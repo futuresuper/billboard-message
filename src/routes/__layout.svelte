@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>Future Super</title>
+	<title>Future Super | Write our next billboard</title>
 	<meta charset="UTF-8" />
 	<meta
 		name="viewport"
@@ -11,11 +11,8 @@
 		shrink-to-fit="no"
 	/>
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<meta
-		name="description"
-		content="If you don’t know exactly what your superannuation fund invests in, your future savings could be contributing directly and significantly to the climate crisis."
-	/>
-	<meta property="og:title" content="Future Super | Know what your super invests in?" />
+	<meta name="description" content="Your super has a voice. Make sure it speaks volumes." />
+	<meta property="og:title" content="Future Super | Write our next billboard" />
 	<meta
 		property="og:description"
 		content="If you don’t know exactly what your superannuation fund invests in, your future savings could be contributing directly and significantly to the climate crisis."
