@@ -1,9 +1,12 @@
 <script>
 	import '../app.css';
+	const title = 'Future Super | Write our next billboard';
+	const desc = 'Your super has a voice. Make sure it speaks volumes.';
+	const image = 'https://www.futuresuper.com.au/images/future-super-og.png';
 </script>
 
 <svelte:head>
-	<title>Future Super | Write our next billboard</title>
+	<title>{title}</title>
 	<meta charset="UTF-8" />
 	<meta
 		name="viewport"
@@ -11,23 +14,14 @@
 		shrink-to-fit="no"
 	/>
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<meta name="description" content="Your super has a voice. Make sure it speaks volumes." />
-	<meta property="og:title" content="Future Super | Write our next billboard" />
-	<meta
-		property="og:description"
-		content="If you don’t know exactly what your superannuation fund invests in, your future savings could be contributing directly and significantly to the climate crisis."
-	/>
-	<meta property="og:image" content="https://www.futuresuper.com.au/images/future-super-og.png" />
+	<meta name="description" content={desc} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={desc} />
+	<meta property="og:image" content={image} />
 	<meta property="og:type" content="website" />
-	<meta property="twitter:title" content="Know what your super invests in?" />
-	<meta
-		property="twitter:description"
-		content="If you don’t know exactly what your superannuation fund invests in, your future savings could be contributing directly and significantly to the climate crisis."
-	/>
-	<meta
-		property="twitter:image"
-		content="https://www.futuresuper.com.au/images/future-super-og.png"
-	/>
+	<meta property="twitter:title" content={title} />
+	<meta property="twitter:description" content={desc} />
+	<meta property="twitter:image" content={image} />
 	<meta name="twitter:card" content="summary_large_image" />
 	<link
 		rel="icon"

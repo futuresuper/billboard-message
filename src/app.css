@@ -1,15 +1,20 @@
 @font-face {
-	font-family: 'HelveticaNeueLTPro-Roman';
-	src: url('./lib/fonts/hnrom.woff2') format('woff2');
-}
-@font-face {
-	font-family: 'HelveticaNeueLTPro-Md';
-	src: url('./lib/fonts/hnmd.woff2') format('woff2');
+	font-family: 'MonumentGrotesk';
+	src: url('./lib/fonts/MonumentGrotesk-Regular.otf');
 }
 :root {
-	font-family: 'HelveticaNeueLTPro-Roman', sans-serif;
+	font-family: 'MonumentGrotesk', sans-serif;
 }
 body {
 	margin: 0;
 	background-color: white;
+}
+
+html {
+	box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
 }
