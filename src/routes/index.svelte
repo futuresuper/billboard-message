@@ -1,24 +1,66 @@
 <script>
 	import Logo from '../lib/Logo.svelte';
+	import { onMount } from 'svelte';
 
+	let name = '';
 	let message = 'Look mum, no coal';
-	let name = 'Jake L';
-	let location = 'Sydney';
+	let location = '';
 	const charsAllowed = 70;
 	let charsRemaining = charsAllowed - message.length;
+	let formValid = true;
+	let showModal = true;
+
+	// Set name and location if query vars exist
+	onMount(async () => {
+		var query = window.location.search.substring(1);
+		var vars = query.split('&');
+		for (var i = 0; i < vars.length; i++) {
+			var pair = vars[i].split('=');
+			if (decodeURIComponent(pair[0]) == 'name') {
+				name = decodeURIComponent(pair[1]);
+			}
+			if (decodeURIComponent(pair[0]) == 'location') {
+				location = decodeURIComponent(pair[1]);
+			}
+		}
+	});
 
 	const handleChange = (event) => {
 		const text = event.target.value;
 		if (text.length <= charsAllowed) {
 			message = text;
+			formValid = true;
 		} else {
 			message = text.slice(0, charsAllowed);
+			formValid = false;
 		}
 		charsRemaining = charsAllowed - text.length;
+	};
+
+	const hideModal = () => {
+		showModal = false;
 	};
 </script>
 
 <main>
+	{#if showModal}
+		<div id="modal">
+			<div class="modal-box">
+				<h2>
+					Your super is powerful. You're already using it to invest in climate solutions. Make a
+					billboard, so others can too.
+				</h2>
+				<hr />
+				<h3>Some helpful tips and tricks</h3>
+				<p>Swearing won’t get your billboard up in lights</p>
+				<p>Innuendo won’t get you to the end-o</p>
+				<p>Make it personal</p>
+				<p>Have fun</p>
+				<button on:click={() => hideModal()}>Let's Go!</button>
+			</div>
+		</div>
+	{/if}
+
 	<div class="billboard-container">
 		<div class="message-container">
 			<h2 id="message-on-billboard">{message}</h2>
@@ -48,7 +90,11 @@
 			<input bind:value={name} type="text" id="name" name="name" required="required" />
 			<label for="location">Location</label>
 			<input bind:value={location} type="text" id="location" name="location" required="required" />
-			<button type="submit">Submit</button>
+			{#if formValid}
+				<button type="submit">Submit</button>
+			{:else}
+				<button class="not-valid" disabled>Make message shorter</button>
+			{/if}
 		</form>
 	</div>
 </main>
@@ -77,6 +123,29 @@
 </footer>
 
 <style>
+	#modal {
+		display: fixed;
+		position: absolute;
+		width: 100%;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.6);
+		backdrop-filter: blur(2px);
+		padding: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 99;
+	}
+	.modal-box {
+		background-color: white;
+		max-width: 600px;
+		padding: 40px;
+		text-align: center;
+		border-radius: 40px;
+	}
+	.modal-box > h2 {
+		margin-top: 0;
+	}
 	main {
 		display: flex;
 		flex-direction: row;
@@ -166,6 +235,10 @@
 	}
 	button:hover {
 		cursor: pointer;
+	}
+	button.not-valid {
+		background-color: gray;
+		cursor: no-drop;
 	}
 	footer {
 		background-color: white;
