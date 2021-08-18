@@ -62,6 +62,11 @@
 	{/if}
 
 	<div class="billboard-container">
+		<img
+			class="billboard-mobile"
+			src="https://res.cloudinary.com/future-super/image/upload/f_auto,q_auto/v1628831547/Billboard_Mockup_1.png"
+			alt=""
+		/>
 		<div class="message-container">
 			<h2 id="message-on-billboard">{message}</h2>
 			<p id="name-and-location-on-billboard">{name}, {location}</p>
@@ -123,6 +128,14 @@
 </footer>
 
 <style>
+	@media (min-width: 800.1px) {
+		.billboard-container {
+			background-image: url('https://res.cloudinary.com/future-super/image/upload/f_auto,q_auto/v1629081534/Billboard_Centred.png');
+		}
+		.billboard-mobile {
+			display: none;
+		}
+	}
 	#modal {
 		display: fixed;
 		position: absolute;
@@ -154,7 +167,6 @@
 		width: 75vw;
 		height: 100vh;
 		/* overflow: hidden; */
-		background-image: url('https://res.cloudinary.com/future-super/image/upload/f_auto,q_auto/v1629081534/Billboard_Centred.png');
 		background-repeat: no-repeat;
 		background-position: left center;
 		background-size: cover;
@@ -248,24 +260,46 @@
 	.footer-links > a {
 		color: black;
 	}
-	@media (max-width: 600px) {
+	@media (max-width: 800px) {
 		main {
 			flex-direction: column;
 		}
 		.billboard-container {
 			width: 100%;
+			height: auto;
+			background-size: contain;
+			background-position: top;
+		}
+		.billboard-mobile {
+			width: 100%;
 		}
 		.message-container {
-			top: 12vw;
+			top: 23vw;
 			left: 12vw;
 			width: 43vw;
 			height: 32vw;
 		}
+		.input-container {
+			padding: 10vw 4vw;
+			margin: -40px 0 0 0;
+			max-height: 100vh;
+			display: block;
+			width: 100%;
+			border-radius: 40px 40px 0 0;
+		}
+		.logo-container {
+			display: none;
+		}
 		label {
 			font-size: 14px;
+			margin-bottom: 6px;
 		}
 		input {
 			font-size: 14px;
+			margin-bottom: 12px;
+		}
+		.chars-remaining {
+			margin-bottom: 12px;
 		}
 		button {
 			font-size: 14px;
