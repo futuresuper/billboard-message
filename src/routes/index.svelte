@@ -12,19 +12,19 @@
 	let showModal = true;
 
 	// Set name and location if query vars exist
-	onMount(async () => {
-		var query = window.location.search.substring(1);
-		var vars = query.split('&');
-		for (var i = 0; i < vars.length; i++) {
-			var pair = vars[i].split('=');
-			if (decodeURIComponent(pair[0]) == 'name') {
-				name = decodeURIComponent(pair[1]);
-			}
-			if (decodeURIComponent(pair[0]) == 'location') {
-				location = decodeURIComponent(pair[1]);
-			}
-		}
-	});
+	// onMount(async () => {
+	// 	var query = window.location.search.substring(1);
+	// 	var vars = query.split('&');
+	// 	for (var i = 0; i < vars.length; i++) {
+	// 		var pair = vars[i].split('=');
+	// 		if (decodeURIComponent(pair[0]) == 'name') {
+	// 			name = decodeURIComponent(pair[1]);
+	// 		}
+	// 		if (decodeURIComponent(pair[0]) == 'location') {
+	// 			location = decodeURIComponent(pair[1]);
+	// 		}
+	// 	}
+	// });
 
 	const handleChange = (event) => {
 		const text = event.target.value;
