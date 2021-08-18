@@ -1,7 +1,7 @@
-<script context="module">
-	export const prerender = true;
+<script>
 	import Logo from '../lib/Logo.svelte';
 	import { onMount } from 'svelte';
+	import { prevent_default } from 'svelte/internal';
 
 	let name = '';
 	let message = 'Look mum, no coal';
@@ -9,22 +9,22 @@
 	const charsAllowed = 70;
 	let charsRemaining = charsAllowed - message.length;
 	let formValid = true;
-	let showModal = true;
+	let showModal = 'intro';
 
 	// Set name and location if query vars exist
-	// onMount(async () => {
-	// 	var query = window.location.search.substring(1);
-	// 	var vars = query.split('&');
-	// 	for (var i = 0; i < vars.length; i++) {
-	// 		var pair = vars[i].split('=');
-	// 		if (decodeURIComponent(pair[0]) == 'name') {
-	// 			name = decodeURIComponent(pair[1]);
-	// 		}
-	// 		if (decodeURIComponent(pair[0]) == 'location') {
-	// 			location = decodeURIComponent(pair[1]);
-	// 		}
-	// 	}
-	// });
+	onMount(async () => {
+		var query = window.location.search.substring(1);
+		var vars = query.split('&');
+		for (var i = 0; i < vars.length; i++) {
+			var pair = vars[i].split('=');
+			if (decodeURIComponent(pair[0]) == 'name') {
+				name = decodeURIComponent(pair[1]);
+			}
+			if (decodeURIComponent(pair[0]) == 'location') {
+				location = decodeURIComponent(pair[1]);
+			}
+		}
+	});
 
 	const handleChange = (event) => {
 		const text = event.target.value;
@@ -39,12 +39,41 @@
 	};
 
 	const hideModal = () => {
-		showModal = false;
+		showModal = 'none';
 	};
+
+	async function postData(url = '', data = {}) {
+		const response = await fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		});
+		return response.json(); // parses JSON response into native JavaScript objects
+	}
+
+	function handleSubmit() {
+		console.log('FORM SUBMITTED');
+		postData('https://67l8qspd50.execute-api.ap-southeast-2.amazonaws.com/prod/billboardmessage', {
+			name,
+			location,
+			message
+		})
+			.then((data) => {
+				console.log(data); // JSON data parsed by `data.json()` call
+				console.log('it done');
+				showModal = 'success';
+				window.scrollTo(0, 0);
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+			});
+	}
 </script>
 
 <main>
-	{#if showModal}
+	{#if showModal === 'intro'}
 		<div id="modal">
 			<div class="modal-box">
 				<h2>
@@ -58,6 +87,23 @@
 				<p>Make it personal</p>
 				<p>Have fun</p>
 				<button on:click={() => hideModal()}>Let's Go!</button>
+			</div>
+		</div>
+	{/if}
+	{#if showModal === 'success'}
+		<div id="modal">
+			<div class="modal-box">
+				<h2>Success!</h2>
+
+				<h3>We've received your submission</h3>
+				<hr />
+				<p>Looking for something to do now?</p>
+				<p>
+					How about
+					<a style="color:black" href="https://www.youtube.com/channel/UCQe4jv35dFXsMRS1MWu00kA"
+						>checking out our Youtube channel</a
+					>
+				</p>
 			</div>
 		</div>
 	{/if}
@@ -77,7 +123,7 @@
 		<div class="logo-container">
 			<Logo />
 		</div>
-		<form name="Billboard Entry" method="POST" data-netlify="true">
+		<form name="Billboard Entry" on:submit|preventDefault={() => handleSubmit()}>
 			<label for="message">Message</label>
 			<textarea
 				on:keyup={(event) => handleChange(event)}
@@ -264,6 +310,15 @@
 	@media (max-width: 800px) {
 		main {
 			flex-direction: column;
+		}
+		.modal-box > h2 {
+			font-size: 20px;
+		}
+		.modal-box > h3 {
+			font-size: 16px;
+		}
+		.modal-box > p {
+			font-size: 14px;
 		}
 		.billboard-container {
 			width: 100%;
