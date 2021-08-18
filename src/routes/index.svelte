@@ -1,4 +1,5 @@
-<script>
+<script context="module">
+	export const prerender = true;
 	import Logo from '../lib/Logo.svelte';
 	import { onMount } from 'svelte';
 
