@@ -62,23 +62,15 @@
 	}
 
 	function handleSubmit() {
-		console.log('FORM SUBMITTED');
 		postData('https://67l8qspd50.execute-api.ap-southeast-2.amazonaws.com/prod/billboardmessage', {
 			name,
 			location,
 			message,
 			email,
 			memberNumber
-		})
-			.then((data) => {
-				console.log(data); // JSON data parsed by `data.json()` call
-				console.log('it done');
-				showModal = 'success';
-				window.scrollTo(0, 0);
-			})
-			.catch((error) => {
-				console.error('Error:', error);
-			});
+		});
+		showModal = 'success';
+		window.scrollTo(0, 0);
 	}
 </script>
 
