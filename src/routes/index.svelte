@@ -6,6 +6,8 @@
 	let name = '';
 	let message = 'Look mum, no coal';
 	let location = '';
+	let email = '';
+	let memberNumber = '';
 	const charsAllowed = 70;
 	let charsRemaining = charsAllowed - message.length;
 	let formValid = true;
@@ -22,6 +24,12 @@
 			}
 			if (decodeURIComponent(pair[0]) == 'location') {
 				location = decodeURIComponent(pair[1]);
+			}
+			if (decodeURIComponent(pair[0]) == 'email') {
+				email = decodeURIComponent(pair[1]);
+			}
+			if (decodeURIComponent(pair[0]) == 'member') {
+				memberNumber = decodeURIComponent(pair[1]);
 			}
 		}
 	});
@@ -58,7 +66,9 @@
 		postData('https://67l8qspd50.execute-api.ap-southeast-2.amazonaws.com/prod/billboardmessage', {
 			name,
 			location,
-			message
+			message,
+			email,
+			memberNumber
 		})
 			.then((data) => {
 				console.log(data); // JSON data parsed by `data.json()` call
@@ -142,6 +152,15 @@
 			<input bind:value={name} type="text" id="name" name="name" required="required" />
 			<label for="location">Location</label>
 			<input bind:value={location} type="text" id="location" name="location" required="required" />
+			<label for="email">Email</label>
+			<input bind:value={email} type="email" id="email" name="email" required="required" />
+			<input
+				bind:value={memberNumber}
+				type="text"
+				id="member-number"
+				name="member-number"
+				style="display:none"
+			/>
 			{#if formValid}
 				<button type="submit">Submit</button>
 			{:else}
@@ -266,7 +285,7 @@
 		display: block;
 		width: 100%;
 		padding: 8px 12px;
-		margin-bottom: 36px;
+		margin-bottom: 24px;
 		font-size: 15px;
 		border: 0;
 		border-radius: 10px;
@@ -280,7 +299,7 @@
 		color: white;
 		font-size: 12px;
 		text-align: right;
-		margin-bottom: 36px;
+		margin-bottom: 24px;
 	}
 	button {
 		width: 100%;
