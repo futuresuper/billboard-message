@@ -194,7 +194,7 @@
 </footer>
 
 <style>
-	@media (min-width: 800.1px) {
+	@media (min-width: 1000.1px) {
 		.billboard-container {
 			background-image: url('https://res.cloudinary.com/future-super/image/upload/f_auto,q_auto/v1629081534/Billboard_Centred.png');
 		}
@@ -326,7 +326,7 @@
 	.footer-links > a {
 		color: black;
 	}
-	@media (max-width: 800px) {
+	@media (max-width: 1000px) {
 		main {
 			flex-direction: column;
 		}
