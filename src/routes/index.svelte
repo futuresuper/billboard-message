@@ -311,6 +311,16 @@
 		main {
 			flex-direction: column;
 		}
+		#modal {
+			padding: 30px;
+			height: 140vh;
+			align-items: flex-start;
+		}
+		.modal-box {
+			padding: 30px;
+			text-align: center;
+			border-radius: 40px;
+		}
 		.modal-box > h2 {
 			font-size: 20px;
 		}
