@@ -40,7 +40,6 @@
 			message = text;
 			formValid = true;
 		} else {
-			message = text.slice(0, charsAllowed);
 			formValid = false;
 		}
 		charsRemaining = charsAllowed - text.length;
