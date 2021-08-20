@@ -1,7 +1,7 @@
 <script>
 	import Logo from '../lib/Logo.svelte';
 	import { onMount } from 'svelte';
-	import { prevent_default } from 'svelte/internal';
+	// import { prevent_default } from 'svelte/internal';
 
 	let name = '';
 	let message = 'Look mum, no coal';
@@ -124,7 +124,7 @@
 		<div class="logo-container">
 			<Logo />
 		</div>
-		<form name="Billboard Entry" on:submit|preventDefault={() => handleSubmit()}>
+		<form name="Billboard Entry" on:submit={() => handleSubmit()}>
 			<label for="message">Message</label>
 			<textarea
 				on:keyup={(event) => handleChange(event)}
