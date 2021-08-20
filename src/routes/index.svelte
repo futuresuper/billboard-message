@@ -39,9 +39,10 @@
 		if (text.length <= charsAllowed) {
 			message = text;
 			formValid = true;
-		} else {
-			formValid = false;
 		}
+		// else {
+		// 	formValid = false;
+		// }
 		charsRemaining = charsAllowed - text.length;
 	};
 
