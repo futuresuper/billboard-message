@@ -39,10 +39,9 @@
 		if (text.length <= charsAllowed) {
 			message = text;
 			formValid = true;
+		} else {
+			formValid = false;
 		}
-		// else {
-		// 	formValid = false;
-		// }
 		charsRemaining = charsAllowed - text.length;
 	};
 
@@ -153,11 +152,13 @@
 				name="member-number"
 				style="display:none"
 			/>
-			{#if formValid}
-				<button type="submit">Submit</button>
-			{:else}
-				<button class="not-valid" disabled>Make message shorter</button>
-			{/if}
+			<button
+				type="submit"
+				class={formValid ? '' : 'not-valid'}
+				disabled={formValid ? 'false' : 'true'}
+			>
+				{formValid ? 'Submit' : 'Make message shorter'}
+			</button>
 		</form>
 	</div>
 </main>
