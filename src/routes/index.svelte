@@ -1,7 +1,7 @@
 <script>
 	import Logo from '../lib/Logo.svelte';
 	import { onMount } from 'svelte';
-	// import { prevent_default } from 'svelte/internal';
+	import { prevent_default } from 'svelte/internal';
 
 	let name = '';
 	let message = 'Look mum, no coal';
@@ -61,15 +61,20 @@
 	}
 
 	function handleSubmit() {
-		postData('https://67l8qspd50.execute-api.ap-southeast-2.amazonaws.com/prod/billboardmessage', {
-			name,
-			location,
-			message,
-			email,
-			memberNumber
-		});
-		showModal = 'success';
-		window.scrollTo(0, 0);
+		if (formValid) {
+			postData(
+				'https://67l8qspd50.execute-api.ap-southeast-2.amazonaws.com/prod/billboardmessage',
+				{
+					name,
+					location,
+					message,
+					email,
+					memberNumber
+				}
+			);
+			showModal = 'success';
+			window.scrollTo(0, 0);
+		}
 	}
 </script>
 
@@ -95,8 +100,10 @@
 		<div id="modal">
 			<div class="modal-box">
 				<h2>Thanks!</h2>
-
-				<h3>Thanks for sending in your billboard! We’ll let you know if we decide to use your submission.</h3>
+				<h3>
+					Thanks for sending in your billboard! We’ll let you know if we decide to use your
+					submission.
+				</h3>
 				<hr />
 				<p>Looking for something to do now?</p>
 				<p>
@@ -124,7 +131,7 @@
 		<div class="logo-container">
 			<Logo />
 		</div>
-		<form name="Billboard Entry" on:submit={() => handleSubmit()}>
+		<form name="Billboard Entry" on:submit|preventDefault={() => handleSubmit()}>
 			<label for="message">Message</label>
 			<textarea
 				on:keyup={(event) => handleChange(event)}
@@ -152,11 +159,7 @@
 				name="member-number"
 				style="display:none"
 			/>
-			<button
-				type="submit"
-				class={formValid ? '' : 'not-valid'}
-				disabled={formValid ? 'false' : 'true'}
-			>
+			<button type="submit" class={formValid ? '' : 'not-valid'}>
 				{formValid ? 'Submit' : 'Make message shorter'}
 			</button>
 		</form>
