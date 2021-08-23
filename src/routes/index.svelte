@@ -94,9 +94,9 @@
 	{#if showModal === 'success'}
 		<div id="modal">
 			<div class="modal-box">
-				<h2>Success!</h2>
+				<h2>Thanks!</h2>
 
-				<h3>We've received your submission</h3>
+				<h3>Thanks for sending in your billboard! We’ll let you know if we decide to use your submission.</h3>
 				<hr />
 				<p>Looking for something to do now?</p>
 				<p>
