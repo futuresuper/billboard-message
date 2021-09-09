@@ -129,7 +129,7 @@
 		/>
 		<div class="message-container">
 			<h2 id="message-on-billboard">{message}</h2>
-			<p id="name-and-location-on-billboard">{firstName}.{lastName}, {location}</p>
+			<p id="name-and-location-on-billboard">{firstName} {lastName}, {location}</p>
 		</div>
 	</div>
 	<div class="input-container">
