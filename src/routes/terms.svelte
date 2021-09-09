@@ -10,8 +10,8 @@
 			person will be permitted. The competition opens on September 9th 2021 at 12:00am AEST and
 			closes on September 16th 2021 at 12:00am. The Competition Winner will be chosen on September
 			28th at 5:00pm AEST, unless the survey close date is extended. The Competition Winner consents
-			to having their first name, surname initial, city and written submission published on a public
-			billboard. There is no cash or material prize associated with this competition.
+			to having their first name, surname initial, state and written submission published on a
+			public billboard. There is no cash or material prize associated with this competition.
 		</i>
 	</p>
 	<p>
@@ -79,7 +79,7 @@
 	<h2>Winning submission</h2>
 	<ul>
 		<li>
-			The Competition Winner will have their First Name, Surname Initial, City and Written
+			The Competition Winner will have their First Name, Surname Initial, State and Written
 			submission displayed on a public billboard.
 		</li>
 		<li>There is no cash or other material prize associated with winning.</li>
