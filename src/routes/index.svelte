@@ -4,7 +4,7 @@
 	import { prevent_default } from 'svelte/internal';
 	import Footer from '../lib/Footer.svelte';
 
-	let firstInitial = '';
+	let firstName = '';
 	let lastName = '';
 	let message = 'Look mum, no coal';
 	let location = '';
@@ -22,10 +22,10 @@
 		for (var i = 0; i < vars.length; i++) {
 			var pair = vars[i].split('=');
 			if (decodeURIComponent(pair[0]) == 'first') {
-				firstInitial = decodeURIComponent(pair[1])[0];
+				firstName = decodeURIComponent(pair[1]);
 			}
 			if (decodeURIComponent(pair[0]) == 'last') {
-				lastName = decodeURIComponent(pair[1]);
+				lastName = decodeURIComponent(pair[1])[0];
 			}
 			if (decodeURIComponent(pair[0]) == 'location') {
 				location = decodeURIComponent(pair[1]);
@@ -70,7 +70,7 @@
 			postData(
 				'https://67l8qspd50.execute-api.ap-southeast-2.amazonaws.com/prod/billboardmessage',
 				{
-					name: firstInitial + '.' + lastName,
+					name: firstName + '.' + lastName,
 					location,
 					message,
 					email,
@@ -129,7 +129,7 @@
 		/>
 		<div class="message-container">
 			<h2 id="message-on-billboard">{message}</h2>
-			<p id="name-and-location-on-billboard">{firstInitial}.{lastName}, {location}</p>
+			<p id="name-and-location-on-billboard">{firstName}.{lastName}, {location}</p>
 		</div>
 	</div>
 	<div class="input-container">
@@ -153,9 +153,9 @@
 			</p>
 			<div class="name-row">
 				<div class="initial">
-					<label for="first-initial">First Initial</label>
+					<label for="first-initial">First Name</label>
 					<input
-						bind:value={firstInitial}
+						bind:value={firstName}
 						type="text"
 						id="first-initial"
 						name="first-initial"
@@ -163,7 +163,7 @@
 					/>
 				</div>
 				<div class="last">
-					<label for="last-name">Last Name</label>
+					<label for="last-name">Last Initial</label>
 					<input
 						bind:value={lastName}
 						type="text"
@@ -173,7 +173,7 @@
 					/>
 				</div>
 			</div>
-			<label for="location">Location</label>
+			<label for="location">State</label>
 			<input bind:value={location} type="text" id="location" name="location" required="required" />
 			<label for="email">Email</label>
 			<input bind:value={email} type="email" id="email" name="email" required="required" />
@@ -298,10 +298,10 @@
 		justify-content: space-between;
 	}
 	.initial {
-		width: 30%;
+		width: 65%;
 	}
 	.last {
-		width: 65%;
+		width: 30%;
 	}
 	textarea {
 		margin-bottom: 0;
