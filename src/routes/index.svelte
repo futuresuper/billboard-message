@@ -3,7 +3,8 @@
 	import { onMount } from 'svelte';
 	import { prevent_default } from 'svelte/internal';
 
-	let name = '';
+	let firstInitial = '';
+	let lastName = '';
 	let message = 'Look mum, no coal';
 	let location = '';
 	let email = '';
@@ -19,8 +20,11 @@
 		var vars = query.split('&');
 		for (var i = 0; i < vars.length; i++) {
 			var pair = vars[i].split('=');
-			if (decodeURIComponent(pair[0]) == 'name') {
-				name = decodeURIComponent(pair[1]);
+			if (decodeURIComponent(pair[0]) == 'first') {
+				firstInitial = decodeURIComponent(pair[1])[0];
+			}
+			if (decodeURIComponent(pair[0]) == 'last') {
+				lastName = decodeURIComponent(pair[1]);
 			}
 			if (decodeURIComponent(pair[0]) == 'location') {
 				location = decodeURIComponent(pair[1]);
@@ -65,7 +69,7 @@
 			postData(
 				'https://67l8qspd50.execute-api.ap-southeast-2.amazonaws.com/prod/billboardmessage',
 				{
-					name,
+					name: firstInitial + '.' + lastName,
 					location,
 					message,
 					email,
@@ -124,7 +128,7 @@
 		/>
 		<div class="message-container">
 			<h2 id="message-on-billboard">{message}</h2>
-			<p id="name-and-location-on-billboard">{name}, {location}</p>
+			<p id="name-and-location-on-billboard">{firstInitial}.{lastName}, {location}</p>
 		</div>
 	</div>
 	<div class="input-container">
@@ -146,8 +150,28 @@
 				<span style="color: {charsRemaining > -1 ? '#3dfa52' : '#FF6464'}">{charsRemaining}</span> characters
 				remaining
 			</p>
-			<label for="name">Name</label>
-			<input bind:value={name} type="text" id="name" name="name" required="required" />
+			<div class="name-row">
+				<div class="initial">
+					<label for="first-initial">First Initial</label>
+					<input
+						bind:value={firstInitial}
+						type="text"
+						id="first-initial"
+						name="first-initial"
+						required="required"
+					/>
+				</div>
+				<div class="last">
+					<label for="last-name">Last Name</label>
+					<input
+						bind:value={lastName}
+						type="text"
+						id="last-name"
+						name="last-name"
+						required="required"
+					/>
+				</div>
+			</div>
 			<label for="location">Location</label>
 			<input bind:value={location} type="text" id="location" name="location" required="required" />
 			<label for="email">Email</label>
@@ -287,6 +311,17 @@
 		border-radius: 10px;
 		outline: none;
 		font-family: inherit;
+	}
+	.name-row {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	.initial {
+		width: 30%;
+	}
+	.last {
+		width: 65%;
 	}
 	textarea {
 		margin-bottom: 0;
