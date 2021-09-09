@@ -70,7 +70,7 @@
 			postData(
 				'https://67l8qspd50.execute-api.ap-southeast-2.amazonaws.com/prod/billboardmessage',
 				{
-					name: firstName + '.' + lastName,
+					name: firstName + ' ' + lastName,
 					location,
 					message,
 					email,
