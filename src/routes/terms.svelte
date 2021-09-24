@@ -5,6 +5,13 @@
 <div class="container">
 	<h1>Terms and Conditions</h1>
 	<p>
+		<strong>Important Amendment 24/09/2021:</strong> We’ve updated our terms and conditions to reflect
+		the number of people eligible to win. Per this update, there will now be 4 winners selected. Where
+		the terms refer to “The Competition Winner” this should now be read as “The Competition Winners”.
+		For any queries regarding this update, please contact us at marketing@futuresuper.com.au.
+	</p>
+	<hr />
+	<p>
 		<i>
 			This competition is open to Australian residents over the age of 18 years. Only one entry per
 			person will be permitted. The competition opens on September 9th 2021 at 12:00am AEST and
